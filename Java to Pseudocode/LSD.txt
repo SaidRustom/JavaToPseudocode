@@ -1,0 +1,147 @@
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Scanner;
+
+/**
+ * This class has student variables and methods.
+ * @author Said
+ */
+public class Student {
+	Scanner input = new Scanner (System.in);
+	
+	
+	private int studentNumber;
+	private String studentName;
+	private String reason1;
+	private String reason2;
+	
+	public Student() {
+		int studentNumber;
+		String studentName;
+		String reason1;
+		String reason2;
+	}
+
+	
+/** 
+ * getter for studentNumber
+ * @return studentNumber
+ */
+	public int getStudentNumber() {
+		return studentNumber;
+	}
+/**
+ * setter for studentNumber
+ * @param studentNumber to set studentNummber
+ */
+	public void setStudentNumber(int studentNumber) {
+		this.studentNumber = studentNumber;
+	}
+/**
+ * getter for studentName
+ * @return StudentName
+ */
+	public String getStudentName() {
+		return studentName;
+	}
+/**
+ * getter for reason1 
+ * @return reason1
+ */
+	public String getReason1() {
+		return reason1;
+	}
+/**
+ * getter for reason2 
+ * @return reason2
+ */
+	public String getReason2() {
+		return reason2;
+	}
+/**
+ * setter for reason1
+ * @param reason1 to set reason1
+ *
+ */
+	public void setReason1(String reason1) {
+		this.reason1 = reason1;
+	}
+/**
+ * setter for reason2
+ * @param reason2 to set reason2
+ */
+	public void setReason2(String reason2) {
+		this.reason2 = reason2;
+	}
+	/**
+	 * setter for studentName
+	 * @param studentName to set studentName
+	 */
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	/**
+	 * this method accepts student name, number, reason as an input
+	 * 
+	 */
+	public void getStudentInformation() {
+		System.out.println("Enter your Student number:");
+		setStudentNumber(input.nextInt());
+		input.nextLine();
+		
+		System.out.println("Enter your name: ");
+		setStudentName(input.nextLine());
+		
+		System.out.println("enter a reason for choosing to study this course");
+		setReason1(input.nextLine());
+		System.out.println("enter another reason for choosing this course");
+		setReason2(input.nextLine());
+	}
+/**
+ * this method prints student name, number, reasons to console.
+ *  prints student information to console
+ */
+	public void PrintStudentInformation() {
+		System.out.println("Your student number is: " + studentNumber);
+		System.out.println("Your name is: " + studentName);
+		System.out.println("Reasons why you chose to take this course: ");
+		System.out.println("1. " + getReason1());
+		System.out.println("2. " + getReason2());
+	}
+	/**
+	 * this method checks if student number is an odd or an even number.
+	 * @return true if the student number is an odd number,
+	 * false if the student number is an even number.
+	 */
+	public boolean IsOdd() {
+		
+		if (studentNumber % 2 == 0)
+			return false;
+		else 
+			return true;
+				
+	}
+	/**
+	 * this method calculates and prints the number of weeks left until graduation.
+	 *  calculates the number of weeks left until graduation
+	 */
+	public void weeksLeftToGraduation() {
+		LocalDate date = LocalDate.now();
+		LocalDate endDate  = LocalDate.of(2024, 04, 25);
+		long weeksRemaining =  (ChronoUnit.DAYS.between(date, endDate) /7 ) -1;
+		System.out.println("you have " + weeksRemaining + " weeks left to graduation");
+	}
+	/**
+	 * this method calculates and prints the number of months left until the end of the year.
+	 *  calculates the number of months left in 2022
+	 */
+	public void monthsLeft() {
+		LocalDate date = LocalDate.now();
+		LocalDate endDate = LocalDate.of(2023, 1, 1);
+		long monthRemaining = ChronoUnit.MONTHS.between(date, endDate);
+		System.out.println("there are " + monthRemaining + " months remaining in 2022");
+	}
+	}
+	
+	
+
