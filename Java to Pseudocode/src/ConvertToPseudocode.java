@@ -50,6 +50,8 @@ public class ConvertToPseudocode {
 				lines[i]= lines[i].replace("Math.sqrt", "sqrt");
 				lines[i]= lines[i].replace("Math.pow", "pow");
 				lines[i]= lines[i].replace("input.nextLine()", "");
+				lines[i]= lines[i].replace("@return", "return");
+
 
 					System.out.println(lines[i]);
 			i++;
