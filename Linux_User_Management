@@ -1,0 +1,129 @@
+#!/bin/bash
+
+#Assignment: lab08
+#Student name: Said Rustom
+#Section: 320
+#scriptFile name: myScript
+#Submission date:
+#this script file prints a menu to the user to choose from
+	#the menu contains options that performs useradd, usermod statements.
+lineSeperator="--------------------------------------------------------|"
+A="-A- Create a user account"
+B="-B- Delete a user account"
+C="-C- Change supplementary group for a user account"
+D="-D- Change initial group for a user account"
+E="-E- Change default login shell for a user account "
+F="-F- Change account expiration date for a user account"
+Q="-Q- Quit"
+stop=n
+echo "$stop"
+while [[ $stop != "y" ]]
+do
+	clear
+	echo $lineSeperator
+	echo $A
+	echo $lineSeperator
+	echo $B
+	echo $lineSeperator
+	echo $C
+	echo $lineSeperator
+	echo $D
+	echo $lineSeperator
+	echo $E
+	echo $lineSeperator
+	echo $F
+	echo $lineSeperator
+	echo $Q
+	echo $lineSeperator
+	read -p "What would you like to do: " input
+		if [[ $input = "a" || $input = "A" ]]    #useradd
+		then
+			clear
+			echo "Creating a new User.."
+			read -p "enter username: " username
+			read -p "enter user home directory (absolute path):" homeDir
+			read -p "enter default login shell (absolute path):" absPath
+			useradd -d$homeDir -s$absPath -m $username || echo "invalid inputs, new user not created"
+			read -p "User created! to exit (Q), back to menu (M):" exitMenu
+			if [[ $exitMenu = "q" || $exitMenu = "Q" ]]
+			then
+				stop=y
+			fi
+		elif [[ $input = "b" || $input = "B" ]]  #userdel
+		then
+			clear
+			echo "Deleting an existing user.."
+			read -p "enter a username to delete:" username
+			userdel -r $username || echo "invalid input, user not deleted"
+			echo "user deleted!"
+			read -p "exit (Q), back to menu (M)" exitMenu
+			if [[ $exitMenu = "q" || $exitMenu = "Q" ]]
+                        then
+                                stop=y
+                        fi
+		elif [[ $input = "c" || $input = "C" ]]    #usermod adding group
+		then
+			clear
+			echo "Changing supplementary group for a user.."
+			read -p "Enter username:" username
+			read -p "Enter group name:" groupName
+			usermod -a $username -G $groupName || echo "invalid, user not added to group"
+			echo "User added to group!"
+			read -p "exit (Q), back to menu (M)" exitMenu
+                        if [[ $exitMenu = "q" || $exitMenu = "Q" ]]
+                        then
+                                stop=y
+                        fi
+		elif [[ $input = "d" || input = "D" ]]     #usermod change initial group
+		then
+			clear
+			echo "Changing initial group for a user.."
+			read -p "Enter username:" username
+			read -p "enter new initial group:" group
+			usermod -g$group $username || echo "invalid, user initial group not changed."
+			echo "initial group changed!"
+			read -p "exit (Q), back to menu (M)" exitMenu
+                        if [[ $exitMenu = "q" || $exitMenu = "Q" ]]
+                        then
+                                stop=y
+                        fi
+		elif [[ $input = "e" || $input = "E" ]]   #usermod change login shell
+		then
+			clear
+			echo "Changing user default login shell.."
+			read -p "Enter username:" username
+			read -p "Enter new login shell (absolute path):" newShell
+			usermod -s$newShell $username || echo "invalid, login shell not changed."
+			echo "login shell changed!"
+			read -p "exit (Q), back to menu (M)" exitMenu
+                        if [[ $exitMenu = "q" || $exitMenu = "Q" ]]
+                        then
+                                stop=y
+                        fi
+		elif [[ $input = "f" || $input = "F" ]]   #usermod change account exp date
+		then
+			clear
+			echo "Changing account expiration date"
+			read -p "Enter username:" username
+			read -p "Enter expiration date: (YYYY-MM-DD):" date
+			usermod -e$date $username || echo "invalid, expiration date not changed"
+			echo "Expiration date changed!"
+			read -p "exit (Q), back to menu (M)" exitMenu
+                        if [[ $exitMenu = "q" || $exitMenu = "Q" ]]
+                        then
+                                stop=y
+                        fi
+		
+		elif [[ $input = "q" || $input = "Q" ]]   #exit the loop
+		then
+			echo "You entered 'Q', closing program.."
+			sleep 3
+			stop=y
+		else
+			read -p "invalid input, press 'enter' to try again" input
+		fi
+done
+echo "-------------------|"
+echo "--program closed!"
+echo "-------------------|"
+
