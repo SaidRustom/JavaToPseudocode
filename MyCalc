@@ -1,0 +1,120 @@
+#!bin/bash
+#Assignment: lab09
+#Student name: Said Rustom
+#Section: 320
+#ScriptFile name: myCalc
+#
+#This script file performs basic arithmetic calculations,
+	#it takes in 0 or 3 parameters:
+	#if 0 parameters are entered a menu will be printed to the user as a guide
+	#if 3 parameters are entered, calculations are done internally and presented in the terminal.
+
+
+num1=$1
+num2=$3
+sign=$2
+add()      #adds $1, $2
+{
+ 
+
+	 echo "$1 + $2 = $(($1 + $2))"
+	
+	
+}
+subtract()     #subtracts $1, $2
+{
+	echo "$1 - $2 = $(($1 - $2))"
+	
+}
+printMenu1()  #prints a menu to the user with options to exit or perform calculation
+{
+	echo "C) Calculation"
+        echo "X) Exit"
+
+	read option
+
+	if [[ $option = "c" || $option = "C" ]]
+	then
+		printMenu2
+	elif  [[ $option = "x" || $option = "X" ]] 
+	then
+		exit	
+	else
+		echo "invalid input, try again"
+		printMenu1
+	fi
+}
+
+printMenu2() {    
+	clear
+	read -p " Please enter an integer number or 'X' to exit: " num1
+
+	if [[ $num1 = "x" || $num1 = "X" ]]
+	then
+		exit
+	else
+		printMenu3
+	fi
+}
+
+printMenu3() {     #asks the user to enter an arithmetic operator. ( + or - )
+	echo "+) Add"
+	echo "-) Substract"
+	echo "X) Exit"
+	read option
+
+	if [ $option = "+" ]     #calls the method add
+	then 
+		clear
+		read -p " Please enter an integer number or 'X' to exit: " num2
+		if [[ $num2 = "x" || $num2 = "X" ]]
+		then
+			exit
+		else
+		add $num1 $num2
+		sleep 3
+		printMenu1
+		fi
+	elif [ $option = "-" ]     #calls the method subtract
+	then
+		clear
+		read -p "please enter an integer number of 'X' to exit: " num2
+		if [[ $num2 = "x" || $num2 = "X" ]]
+		then
+			exit
+		else
+		subtract $num1 $num2
+		sleep 3
+		printMenu1
+		fi
+	elif [[ $option = "x" || $option = "X" ]]
+	then
+	       exit
+       else 
+		echo "invalid input, please try again"
+ 		printMenu3
+	fi
+}
+
+checkParameter(){      #Checks for parameters ($1, $2, $3)
+	if [[ $sign = + ]]
+	then 
+		add $num1 $num2
+	       exit	
+	elif [[ $sign = - ]]
+	then subtract $num1 $num2
+		exit
+	elif [[ $sign != "-" || $sign != "+" ]]
+	then
+		if [[ -z $sign ]]
+		then
+			printMenu1
+		else
+		echo ""
+		echo "Invalid arithmetic operator entered... "
+		echo "Enter INTEGER, (+)or(-), INTEGER"
+		echo ""
+		fi
+	fi
+}
+checkParameter 
