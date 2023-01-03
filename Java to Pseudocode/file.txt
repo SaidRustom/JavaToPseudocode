@@ -1,9 +1,6 @@
-/* Assessment: Assignment02
- * Student Name: Said Rustom
- * Lab Professor: Neda Nabavi
- * Lab Section Number: 311
- * Due Date: July 29, 2022
- */
+//This file is to be read by ConvertToPseudoCode.java to be converted 
+//It's highly recommended to go though the code after it's converted and look for potential mistakes. 
+//Following code is added as an example.
  
 /*
  * class PotatoChipBag starts
