@@ -1,10 +1,6 @@
 #!/bin/bash
 
-#Assignment: lab08
-#Student name: Said Rustom
-#Section: 320
 #scriptFile name: myScript
-#Submission date:
 #this script file prints a menu to the user to choose from
 	#the menu contains options that performs useradd, usermod statements.
 lineSeperator="--------------------------------------------------------|"
