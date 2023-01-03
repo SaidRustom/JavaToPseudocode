@@ -6,7 +6,7 @@ import java.io.IOException;
 public class ConvertToPseudocode {
 	public static void main (String[] args) throws FileNotFoundException {
 		
-		FileReader file = new FileReader("LSD.txt");
+		FileReader file = new FileReader("file.txt");
 		BufferedReader buffer = new BufferedReader(file);
 	
 		String [] lines = new String[1000];
